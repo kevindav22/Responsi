@@ -8,8 +8,6 @@ namespace ProjectMahasiswa
     class Program
     {
         // deklarasi objek collection untuk menampung objek mahasiswa
-        Mahasiswa Mahasiswa = new Mahasiswa();
-
         static List<Mahasiswa> daftarMahasiswa = new List<Mahasiswa>();
 
         static void Main(string[] args)
@@ -19,12 +17,6 @@ namespace ProjectMahasiswa
             while (true)
             {
                 TampilMenu();
-
-                Console.Write("\nPilih Menu Aplikasi");
-                Console.Write("\n");
-                Console.Write("\n1. Tambah Mahasiswa");
-                Console.Write("\n2. Tampilkan Mahasiswa");
-                Console.Write("\n3. Keluar");
 
                 Console.Write("\nNomor Menu [1..3]: ");
                 int nomorMenu = Convert.ToInt32(Console.ReadLine());
@@ -39,8 +31,7 @@ namespace ProjectMahasiswa
                         TampilMahasiswa();
                         break;
 
-                    case 3:
-                        System.Environment.Exit(0);
+                    case 3: // keluar dari program
                         return;
 
                     default:
@@ -53,82 +44,47 @@ namespace ProjectMahasiswa
         {
             Console.Clear();
 
-            // PERINTAH: lengkapi kode untuk menampilkan menu
+            Console.WriteLine("Pilih Menu Aplikasi");
+            Console.WriteLine("1. Tambah Mahasiswa");
+            Console.WriteLine("2. Tampilkan Mahasiswa");
+            Console.WriteLine("3. Keluar");
         }
 
         static void TambahMahasiswa()
         {
-            Console.Clear();
-            Mahasiswa Mahasiswa = new Mahasiswa();
 
-            Console.Write("NIM: ");
-            Mahasiswa.nim = Console.ReadLine();
-            Console.Write("Nama: ");
-            Mahasiswa.nama = Console.ReadLine();
+            Console.Clear();
+            Mahasiswa mhs = new Mahasiswa();
+            Console.WriteLine("Tambah Data Mahasiswa");
+            Console.WriteLine();
+            Console.Write("NIM : ");
+            mhs.Nim = Console.ReadLine();
+            Console.Write("Nama : ");
+            mhs.Nama = Console.ReadLine();
             Console.Write("Jenis Kelamin [L/P] : ");
-            Mahasiswa.Kelamin = Console.ReadLine();
-            if (Mahasiswa.Kelamin == "L")
-            {
-                Mahasiswa.Kelamin = "Laki-Laki";
-            }
-            else if (Mahasiswa.Kelamin == "P")
-            {
-                Mahasiswa.Kelamin = "Perempuan";
-            }
-
+            mhs.Gender = Console.ReadLine().ToUpper() == "L" ? "Laki-Laki" : "Perempuan";
             Console.Write("IPK : ");
-            Mahasiswa.total = Console.ReadLine();
-
-
-
-            daftarMahasiswa.Add(Mahasiswa);
-
-            // PERINTAH: lengkapi kode untuk menambahkan objek mahasiswa ke dalam collection
-
+            mhs.IPK = Console.ReadLine();
             Console.WriteLine("\nTekan ENTER untuk kembali ke menu");
             Console.ReadKey();
-        }
-
-        static void HapusMahasiswa()
-        {
-            Console.Clear();
-
-
-            // PERINTAH: lengkapi kode untuk menghapus objek mahasiswa dari dalam collection
-
-            Console.WriteLine("\nTekan ENTER untuk kembali ke menu");
-            Console.ReadKey();
+            daftarMahasiswa.Add(mhs);
         }
 
         static void TampilMahasiswa()
         {
-            Console.WriteLine("Data Mahasiswa\n");
-            int no = 1;
+            Console.Clear();
+            Console.WriteLine("Data Mahasiswa");
+            Console.WriteLine();
+            var nomer = 1;
 
-            Console.WriteLine("No\tNIM\tNama \tJenis Kelamin\tIPK");
-            foreach (Mahasiswa mahasiswa in daftarMahasiswa)
+            foreach (Mahasiswa mhs in daftarMahasiswa)
             {
-
-                Console.WriteLine("{0}.\t{1}\t{2} \t{3}\t{4}", no, mahasiswa.nim, mahasiswa.nama, mahasiswa.Kelamin, mahasiswa.total);
-                no++;
+                Console.WriteLine("{0}. {1}, {2}, {3}, {4}", nomer, mhs.Nim, mhs.Nama, mhs.Gender, mhs.IPK);
+                nomer++;
             }
-            Console.WriteLine("\nTekan ENTER untuk kembali ke menu");
+
+            Console.WriteLine("\nTekan enter untuk kembali ke menu");
             Console.ReadKey();
         }
-
     }
 }
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
